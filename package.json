@@ -10,7 +10,7 @@
     "start": "webpack-dev-server .",
     "build": "Webpack .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d src"
+    "deploy": "gh-pages -d public"
   },
   "author": "",
   "license": "ISC",

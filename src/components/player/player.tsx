@@ -29,6 +29,10 @@ const Player: FC<{ song: string }> = ({ song }) => {
     const song = audioRef.current
     if (!song) return
     song.oncanplaythrough = () => {
+      // later show in the modal
+      if (song.duration === Infinity) {
+        dispatch(clearSong())
+      }
       setDuration(song.duration)
       setPending(false)
       setIsPlayBlocked(false)
@@ -41,7 +45,7 @@ const Player: FC<{ song: string }> = ({ song }) => {
   // play button 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
-    if(!firstPlay) {setFirstPlay(true)}
+    if (!firstPlay) { setFirstPlay(true) }
     const song = audioRef.current
     if (play) {
       setPlay(false)
@@ -64,7 +68,7 @@ const Player: FC<{ song: string }> = ({ song }) => {
 
   const updateProgress = (e: any) => {
     const { currentTime } = e.srcElement;
-    const progressWidth = (currentTime / duration) * 100;
+    const progressWidth = (currentTime / duration) * 100
     // update progress bar width
     setProgressWidth(progressWidth)
     const time = calculateTime(currentTime)
@@ -81,7 +85,7 @@ const Player: FC<{ song: string }> = ({ song }) => {
     if (!track) return
     const width = track.clientWidth
     const clickX = e.nativeEvent.offsetX
-    song.currentTime = (clickX / width) * duration
+    song.currentTime = +((clickX / width) * duration).toFixed(3)
   }
 
   const setVolumeOnClick = (e: any) => {
@@ -183,9 +187,19 @@ const Player: FC<{ song: string }> = ({ song }) => {
     const song = audioRef.current
     if (!song) return
     const { currentTime } = song
+
     if (direction === 'back') {
+      if (currentTime - interval < 0) {
+        song.currentTime = 0
+        return
+      }
       song.currentTime = currentTime - interval
-    } else {
+    }
+    else {
+      if (currentTime + interval > song.duration) {
+        song.currentTime = 0
+        return
+      }
       song.currentTime = currentTime + interval
     }
   }
@@ -222,7 +236,7 @@ const Player: FC<{ song: string }> = ({ song }) => {
           <div className={`${styles.player__play_icon} ${play ? `${styles.type_pause_left}` : `${styles.type_play_left}`}`} style={{ width: play ? '35px' : '40px' }}></div>
           <div className={`${styles.player__play_icon} ${play ? `${styles.type_pause_right}` : `${styles.type_play_right}`}`} style={{ width: play ? '35px' : '40px' }}></div>
         </button>
-        <audio ref={audioRef} src={song} onError={() => console.log('audio error')}></audio>
+        <audio ref={audioRef} src={song} onError={() => console.log('audio error')} preload='metadata'></audio>
         <div className={styles.player__progress} onClick={setProgressOnClick} ref={progressRef}>
           <div ref={progressTrackRef} className={styles.player__progress_track} style={{ width: progressWidth > 90 ? `${progressWidth}%` : `${progressWidth + 3}%` }}>
             <div onMouseMove={throttledProgressMove} onMouseDown={mouseOn} onMouseLeave={mouseUp} ref={progressThumbRef} className={styles.player__progress_thumb}></div>
