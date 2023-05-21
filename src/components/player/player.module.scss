@@ -1,0 +1,179 @@
+.player {
+  &__wrapper {
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    width: 620px;
+    height: 198px;
+    padding: 20px;
+    background-color: var(--color-grey);
+    display: grid;
+    grid-template-areas:
+      "button ."
+      "progress progress"
+      "time volume"
+    ;
+    align-content: space-between;
+    align-items: flex-end;
+
+    @media screen and (max-width: 1350px) {
+      width: 420px;
+    }
+
+    @media screen and (max-width: 600px) {
+      max-height: 200px;
+      width: 100%;
+    }
+  }
+
+  &__return {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color .3s ease-in-out;
+
+    &:hover {
+      color: var(--color-yellow);
+      transition: color .3s ease-in-out;
+    }
+  }
+
+  &__loader {
+    position: absolute;
+    height: 4px;
+    width: 60%;
+    background-color: #fff;
+    top: 1%;
+    left: -100%;
+    animation: loader 1.5s infinite ease-in-out;
+  }
+
+  &__play {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    grid-area: button;
+
+    &_icon {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40.5px;
+      height: 40px;
+      background: #fff;
+      transition: clip-path .3s ease;
+    }
+  }
+
+  &__time {
+    grid-area: time;
+    font-size: 12px;
+  }
+
+  &__progress {
+    grid-area: progress;
+    width: 100%;
+    height: 2px;
+    background-color: var(--progress-bar-color);
+    cursor: pointer;
+
+    &_track {
+      background-color: #fff;
+      height: 100%;
+      transition: width .3s linear;
+      position: relative;
+    }
+
+    &_thumb {
+      content: '';
+      background-color: #fff;
+      display: block;
+      width: 16px;
+      height: 12px;
+      border-radius: 6px;
+      position: absolute;
+      top: -250%;
+      right: 0;
+      &:hover {
+        background-color: var(--progress-bar-color);
+        transform: scale(1.4);
+        transition: all .2s ease-in-out;
+      }
+    }
+  }
+
+  &__volume {
+    grid-area: volume;
+    min-width: 252px;
+    justify-self: end;
+    background-color: #fff;
+    height: 2px;
+    cursor: pointer;
+    margin-right: 9px;
+
+    @media screen and (max-width: 600px) {
+      min-width: 200px;
+      align-self: center;
+    }
+
+    &_track {
+      background-color: #000;
+      width: 50%;
+      height: 100%;
+      transition: width .2s linear;
+      position: relative;
+    }
+
+    &_thumb {
+      content: '';
+      box-sizing: border-box;
+      background-color: #000;
+      display: block;
+      width: 16px;
+      height: 12px;
+      cursor: pointer;
+      position: absolute;
+      top: -250%;
+      right: 0;
+      &:hover {
+        background-color: var(--progress-bar-color);
+        transition: background-color .2s ease-in-out;
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+
+.type_play_left {
+  clip-path: polygon(0 0, 50% 25%, 50% 75%, 0% 100%);
+}
+
+.type_play_right {
+  clip-path: polygon(50% 25%, 100% 50%, 100% 50%, 50% 75%);
+}
+
+.type_pause_left {
+  clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+}
+
+.type_pause_right {
+  clip-path: polygon(90% 0, 100% 0, 100% 100%, 90% 100%)
+}
+
+@keyframes loader {
+  from {
+    left: -100%
+  }
+
+  to {
+    left: 100%;
+  }
+}

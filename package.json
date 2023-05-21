@@ -1,0 +1,51 @@
+{
+  "name": "audio-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "url": "git+https://github.com/VeronikaMorgan/web-audio-player.git"
+  },
+  "scripts": {
+    "start": "webpack-dev-server .",
+    "build": "Webpack .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d src"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.21.8",
+    "@babel/eslint-parser": "^7.21.8",
+    "@babel/plugin-transform-runtime": "^7.21.4",
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.5",
+    "@babel/runtime": "^7.21.5",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.4",
+    "gh-pages": "^5.0.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^7.3.0",
+    "postcss-preset-env": "^8.3.2",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.3",
+    "typescript": "^5.0.4",
+    "typescript-plugin-css-modules": "^5.0.1",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.11.2",
+    "ts-loader": "^9.4.2"
+  }
+}
