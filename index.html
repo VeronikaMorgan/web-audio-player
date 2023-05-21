@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Open Media</title>
+</head>
+
+<body class="body">
+  <header class="header">
+    <div class="header__container container">
+        <h1 class="header__title">Play any audio sources directly in the browser!</h1>
+        <p class="header__subtitle">Without any restrictions for free</p>
+      <div class="header__policy">
+        <p>By uploading the audio file, you agree to our</p>
+        <a class="header__policy-link" href="#" target="_blank">Terms of Service.</a>
+      </div>
+      <div class="header__form" id="form-container" />
+    </div>
+  </header>
+  <main>
+    <section class="intro container">
+      <div class="intro__content">
+        <h2 class="intro__heading">How It Works</h2>
+        <p>Lorem Ipsum is&nbsp;a&nbsp;&laquo;fish&raquo; text often used in&nbsp;print and web design. Lorem Ipsum has
+          been the standard &laquo;fish&raquo;
+          for Latin texts since the early 16th century. At&nbsp;that time, an&nbsp;unnamed printer created a
+          large collection of&nbsp;font sizes and shapes, using Lorem Ipsum for print samples.
+        </p>
+      </div>
+      <img src="vendor/images/intro-img.png" class="intro__img" />
+    </section>
+    <footer class="footer container">
+      <h2 class="footer__heading">Technical requirements</h2>
+      <ul class=" footer__tabs tabs">
+        <li class="tab">
+          <input type="radio" name="tab__btn" id="tab1" class="tab__button" checked />
+          <label for="tab1">Own server</label>
+          <div class="tab__content">
+            <div class="footer__tabs-table table-grid">
+              <div class="table-grid__item">
+                <p>OS + apps</p>
+                <p>Unix/OSX + docker + nvidia-docker</p>
+              </div>
+              <div class="table-grid__item">
+                <p>Free space</p>
+                <p>100 GB of free space</p>
+              </div>
+              <div class="table-grid__item">
+                <p>CPU</p>
+                <p>4 cores or more (e.g. intel core i5)</p>
+              </div>
+              <div class="table-grid__item">
+                <p>Graphics hardware</p>
+                <p>GPU: NVidia only 2Gb+</p>
+              </div>
+              <div class="table-grid__item">
+                <p>Memory</p>
+                <p>16 GB RAM</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tab">
+          <input type="radio" name="tab__btn" id="tab2" class="tab__button" />
+          <label for="tab2">Amazon Instance</label>
+          <div class="tab__content">
+            <div class="footer__tabs-table table-grid">
+              <div class="table-grid__item">
+                <p>Instance</p>
+                <p>g4dn.xlarge</p>
+              </div>
+              <div class="table-grid__item">
+                <p>Memory</p>
+                <p>16 GB RAM</p>
+              </div>
+              <div class="table-grid__item">
+                <p>GPU</p>
+                <p>1</p>
+              </div>
+              <div class="table-grid__item">
+                <p>Storage</p>
+                <p>125 GB</p>
+              </div>
+              <div class="table-grid__item">
+                <p>vCPUs</p>
+                <p>4</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </footer>
+  </main>
+  <script src="main.js"></script>
+</body>
+
+</html>
