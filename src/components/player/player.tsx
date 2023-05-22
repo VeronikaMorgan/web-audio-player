@@ -75,7 +75,9 @@ const Player: FC<{ song: string }> = ({ song }) => {
     // update time counter
     setCurrentTime(time)
   }
+  useEffect(() => {
 
+  })
   const setProgressOnClick = (e: any) => {
     if (isPlayBlocked) return
     if (!firstPlay) return
@@ -163,7 +165,7 @@ const Player: FC<{ song: string }> = ({ song }) => {
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
-
+  
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.code) {
       case 'ArrowLeft':

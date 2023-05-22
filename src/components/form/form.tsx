@@ -12,16 +12,17 @@ const Form: FC = () => {
 
   const [inputValue, setInputValue] = useState<string>('')
   const inputRef = useRef<HTMLInputElement>(null)
-
+  const btnRef = useRef<HTMLButtonElement>(null)
   const dispatch = useAppDispatch()
   useEffect(() => {
     const history = getSearchHistory()
     setHistory(history)
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent | React.MouseEvent) => {
     dispatch(setSong(inputValue))
     setSearchHistory(inputValue)
+    setShowHistory(false)
   }
   // mb we can check it some other way too
   const checkValidity = (value: string): boolean => {
@@ -32,6 +33,7 @@ const Form: FC = () => {
     setInputValue(value)
     const isValid = checkValidity(value)
     isValid ? setIsValid(true) : setIsValid(false)
+    value === '' ?  setShowHistory(true) :  setShowHistory(false)
   }
 
   const setFromHistory = (value: string, e: React.MouseEvent) => {
@@ -49,7 +51,7 @@ const Form: FC = () => {
 
   const handleCloseHistory = (e: any) => {
     e.preventDefault()
-    if (e.target.closest("form")) {
+    if (e.target.closest("#input")) {
       return
     }
     setShowHistory(false)
@@ -66,7 +68,7 @@ const Form: FC = () => {
     <>
       <h2 className={styles.title}>Insert the link</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.form__input_wrapper}>
+        <div className={styles.form__input_wrapper} id='input'>
           <input style={{ paddingRight: isValid ? '16px' : '56px', borderColor: isValid ? 'transparent' : 'rgba(198, 168, 39, 1)' }} value={inputValue} onFocus={onFocus} ref={inputRef} onChange={handleChange} className={styles.form__input} type="text" placeholder="https://" ></input>
           {!isValid && <div className={styles.form__error_icon}></div>}
           {!isValid && <span className={styles.form__error_text}>Please, provide a direct link</span>}
@@ -77,7 +79,7 @@ const Form: FC = () => {
             )}
           </ul>
         </div>
-        <button className={styles.form__btn} type="submit" disabled={!isValid || inputValue === ''}>
+        <button ref={btnRef} className={styles.form__btn} type="submit" disabled={!isValid || inputValue === ''}>
           <img src={img} alt="" />
         </button>
       </form>
